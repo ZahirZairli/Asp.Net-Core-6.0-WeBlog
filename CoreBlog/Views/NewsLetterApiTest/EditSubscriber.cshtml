@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Concrete.NewsLetter
+
+@{
+    ViewData["Title"] = "EditSubscriber";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayyout.cshtml";
+}
+
+<h1>EditSubscriber</h1>
+
+<h4>NewsLetter</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="EditSubscriber">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MailId" />
+            <div class="form-group">
+                <label asp-for="Mail" class="control-label"></label>
+                <input asp-for="Mail" class="form-control" />
+                <span asp-validation-for="Mail" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="MailStatus" /> @Html.DisplayNameFor(model => model.MailStatus)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Yadda saxla" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Siyahı</a>
+</div>
+

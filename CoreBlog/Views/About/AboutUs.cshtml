@@ -1,0 +1,43 @@
+﻿@using EntityLayer.Concrete
+@model List<About>
+@{
+    ViewData["Title"] = "AboutUs";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+@if (TempData["subscribemessage"] != null)
+{
+	<script type="text/javascript">
+		window.onload = function () {
+			swal("Göndərildi!",'Uğurla abonə olundu', "success");
+		};
+	</script>
+}
+<h3 class="tittle">Haqqımızda</h3>
+<div class="row mt-3">
+	<div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+		@foreach (var item in Model)
+		{
+			
+		<div class="blog-grid-top">
+				<div class="blog_info_left_grid">
+					<a href="single.html">
+					<img style="width: 100%;height: 60vh;" src="~/Web/images/@item.AboutImage1" class="img-fluid" alt="">
+					</a>
+				</div>
+				<h3>
+					Biz kimik & məqsədimiz
+				</h3>
+				<p>
+					@item.AboutDetails1
+				</p>
+		</div>
+		}
+	</div>
+	<aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+		<div class="right-blog-info text-left">
+			@await Html.PartialAsync("~/Views/NewsLetter/PartialSubscribeMail.cshtml")
+			@await Html.PartialAsync("PartialSocialMedia","About")
+			@await Component.InvokeAsync("LastBlogs")
+		</div>
+	</aside>
+</div>

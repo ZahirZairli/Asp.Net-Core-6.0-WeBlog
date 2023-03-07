@@ -1,0 +1,81 @@
+﻿@using EntityLayer.Concrete
+@model List<NewsLetter>
+@{
+    ViewData["Title"] = "Index";
+    ViewData["Cotroller"] = "ApiTestNewsLetter";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayyout.cshtml";
+    var a = 1;
+}
+@if (TempData["deletemessage"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Silindi!", 'Seçmiş olduğunuz blog uğurla silindi', "success");
+        };
+    </script>
+}
+@if (TempData["addsubscriber"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Uğurlu!", 'Yeni abonə uğurla əlavə olundu', "success");
+        };
+    </script>
+}
+@if (TempData["deletesubscriber"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Uğurlu!", 'Seçmiş olduğunuz şəxs uğurla silindi', "success");
+        };
+    </script>
+}
+<div style="width: 100%;text-align: center;overflow: scroll;">
+    <h1>Abonələr</h1>
+    <br />
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Mail</th>
+                <th>Durum</th>
+                <th> <i class="mdi mdi-settings menu-icon"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@a</th>
+                    <td>@item.Mail</td>
+                    @if (item.MailStatus)
+                    {
+                        <td>Aktiv</td>
+                    }
+                    else
+                    {
+                        <td>Passiv</td>
+                    }
+                    <td>
+                        <a href="/NewsLetterApiTest/EditSubscriber/@item.MailId"> <i class="fa fa-edit"></i> </a> |
+                        <span id="deleteSpan_@item.MailId">
+                            <a onclick="confirmDelete('@item.MailId',true)"><i class="fa fa-trash-o"></i></a>
+                        </span>
+                        <span id="confirmDeleteSpan_@item.MailId" style="display: none;">
+                            <span>Əminsinizmi?</span>
+                            <a href="/NewsLetterApiTest/DeleteSubscriber/@item.MailId"><i style="color: red;" class="fa fa-trash-o"></i></a> |
+                            <a onclick="confirmDelete('@item.MailId',false)"><i style="color: green;" class="fa fa-window-close"></i></a>
+                        </span>
+                    </td>
+                </tr>
+                a++;
+            }
+        </tbody>
+    </table>
+    <br />
+    <p>
+        <a href="/NewsLetterApiTest/AddSubscriber" class="btn btn-outline-primary">Yeni abonə</a>
+    </p>
+</div>
+
+<script src="~/js/site.js"></script>

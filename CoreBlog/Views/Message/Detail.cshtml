@@ -1,0 +1,38 @@
+﻿@model EntityLayer.Concrete.Message
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+<div>
+    <h4>Mesajınız</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Mövzu
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+        <dt class = "col-sm-2">
+            Mesaj
+        </dt>
+        <dd class = "col-sm-10">
+            <p>
+                @Html.Raw(Model.Content)
+            </p>
+
+            @*@Html.DisplayFor(model => Html.Raw(model.Content))*@
+        </dd>
+        <dt class = "col-sm-2">
+            Tarix
+        </dt>
+        <dd class = "col-sm-10">
+            @(((DateTime)Model.Date).ToString("dd/MMM/yyyy"))
+        </dd>
+        <a class="btn btn-outline-success" href="~/Message/NewMessage/@Model.SenderUserId ">Cavabla</a>
+    </dl>
+</div>
+<div>
+    <a href="~/Message/AllInbox">Bütün mesajlar</a>
+</div>

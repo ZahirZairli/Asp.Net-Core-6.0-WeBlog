@@ -1,0 +1,52 @@
+﻿@model UserUpdateViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+@if (TempData["editerror"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Xəta", 'Zəhmət olmasa xətaları aradan qaldırıb yenidən cəhd edin', "error");
+        };
+    </script>
+}
+
+
+<h1>Şəxsi məlumatlar</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Index" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="namesurname" class="control-label">Tam ad</label>
+                <input asp-for="namesurname" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="mail" class="control-label">Email</label>
+                <input type="email" asp-for="mail" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <img src="~/Web/images/@Model.image" style="border-radius: 50%;width: 5%;"/>
+                <label asp-for="image" class="control-label">Şəkil</label>
+                <input type="file" asp-for="image" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="phonenumber" class="control-label">Əlaqə nömrəsi</label>
+                <input type="tel" asp-for="phonenumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label">Yeni şifrə(<small class="text-danger">Şifrənizi də dəyişmək istəsəniz yeni şifrəni bura daxil edin.</small>)</label>
+                <input type="password" asp-for="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Yadda saxla" class="btn btn-outline-primary" />
+            </div>
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,17 @@
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\bin\Debug\net6.0\BusinessLayer.deps.json
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\bin\Debug\net6.0\BusinessLayer.dll
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\bin\Debug\net6.0\BusinessLayer.pdb
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\bin\Debug\net6.0\EntityLayer.dll
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\bin\Debug\net6.0\EntityLayer.pdb
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.AssemblyReference.cache
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\obj\Debug\net6.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\obj\Debug\net6.0\BusinessLayer.AssemblyInfoInputs.cache
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\obj\Debug\net6.0\BusinessLayer.AssemblyInfo.cs
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.CopyComplete
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\obj\Debug\net6.0\BusinessLayer.dll
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\obj\Debug\net6.0\refint\BusinessLayer.dll
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\obj\Debug\net6.0\BusinessLayer.pdb
+C:\Users\Casper\source\repos\CoreBlog\BusinessLayer\obj\Debug\net6.0\ref\BusinessLayer.dll

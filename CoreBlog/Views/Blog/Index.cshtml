@@ -1,0 +1,92 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common;
+@model IPagedList<EntityLayer.Concrete.Blog>
+@if(TempData["message"] != null)
+{
+	<script type="text/javascript">
+		window.onload = function () {
+            swal("Göndərildi!", 'Uğurla qeydiyyatdan keçildi', "success");
+		};
+	</script>
+}
+<style>
+    .test{
+        color: white;
+        background-color: #01cd74;
+        padding: 5px 10px;
+    }
+</style>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+        @await Component.InvokeAsync("CategoryList")
+
+@if (ViewBag.categoryname != null)
+{
+    <h3 class="tittle">@ViewBag.categoryname</h3>
+}
+else
+{
+<h3 class="tittle">Bloqlar</h3>
+}
+<div class="inner-sec">
+    <!--left-->
+    <div class="left-blog-info-w3layouts-agileits text-left">
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 card">
+                    <a href="/Blog/BlogDetail/@item.BlogId">
+                        <img src="~/Web/images/@item.BlogThumbnailImage" class="card-img-top img-fluid" style="height: 230px;" alt="">
+                    </a>
+                    <div class="card-body">
+                        <ul style="text-align: center;" class="blog-icons my-4">
+                            <li>
+                                <a href="#">
+                                    <i class="far fa-calendar-alt"></i> @(((DateTime)item.BlogDate).ToString("dd/MMM/yyyy"))
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a href="#">
+                                    <i class="far fa-heart"></i> @item.BlogLikeCount
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-eye"></i> @item.BlogViewingCount
+                                </a>
+                            </li>
+                        </ul>
+                        <h5 class="card-title">
+                            <a href="/Blog/BlogDetail/@item.BlogId">@item.BlogTitle (<span style="color: #01cd74">@item.Category.CategoryName</span>) </a>
+                        </h5>
+                        <p class="card-text mb-3">
+                            @if (item.BlogContent.Length > 60)
+                            {
+                                @item.BlogContent.Substring(0,item.BlogContent.Substring(0,60).LastIndexOf(" "))
+                            }
+                            else
+                            {
+                                @item.BlogContent
+                            }
+                            ....
+                        </p>
+                        <a href="/Blog/BlogDetail/@item.BlogId" class="btn btn-primary read-m">Ətraflı</a>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--//left-->
+    </div>
+</div>
+            <nav aria-label="Page navigation example">
+                @Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}),
+                new PagedListRenderOptions()
+                {
+                    LiElementClasses = new List<string> {"myClass", "test"}
+                })
+            </nav>
+

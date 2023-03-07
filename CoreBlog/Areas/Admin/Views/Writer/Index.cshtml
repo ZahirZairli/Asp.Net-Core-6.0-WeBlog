@@ -1,0 +1,194 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    ViewData["Cotroller"] = "Writer";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayyout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <button id="btn" class="btn btn-outline-primary">Bütün siyahıya bax</button>
+        <div id="writerplace"></div>
+    </div>
+    <hr />
+    <br />
+    <br />
+    <div class="col-md-4">
+        <input placeholder="Yazıçının Id'sini daxil edin" class="form-control" min="0" type="number" id="writerid" name="writerid" />
+    </div>
+    <div class="col-md-2">
+        <button id="btn2" class="btn btn-outline-success">Id ye görə bax</button>
+    </div>
+    <div class="col-md-2">
+        <button id="btn3" class="btn btn-outline-danger">Id ye görə sil</button>
+    </div>
+    <div class="col-md-2">
+        <button id="btnadd" class="btn btn-outline-warning">Yeni yazıçı əlavə et</button>
+    </div>
+    <div class="col-md-2">
+        <button id="btnupd" class="btn btn-outline-danger">Id ye görə güncəllə</button>
+    </div>
+</div>
+<br />
+<br />
+<div id="add" class="row" style="displax: flex;align-items: center;justify-content: center;display: none;">
+    <div class="col-md-12">
+        <h3>Yeni yazıçı</h3>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="name" name="WriterName" placeholder="Tam ad" />
+        <br />
+        <input type="email" class="form-control" id="mail" name="WriterMail" placeholder="Mail" />
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="pass" name="WriterPassword" placeholder="Şifrə" />
+        <br />
+        <input type="text" class="form-control" id="about" name="WriterAbout" placeholder="Haqqında" />
+    </div>
+    <br />
+    <br />
+    <div>
+      <button id="btnaddwriter" class="btn btn-outline-danger">Əlavə et</button>
+    </div>
+</div>
+<div id="update" class="row" style="displax: flex;align-items: center;justify-content: center;display: none;">
+    <div class="col-md-12">
+        <h3>Yazıçını güncəllə</h3>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="id" name="WriterId" placeholder="Yazıçının Id'si" />
+        <br />
+
+        <input type="text" class="form-control" id="name1" name="WriterName" placeholder="Tam ad" />
+        <br />
+        <input type="email" class="form-control" id="mail1" name="WriterMail" placeholder="Mail" />
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="pass1" name="WriterPassword" placeholder="Şifrə" />
+        <br />
+        <input type="text" class="form-control" id="about1" name="WriterAbout" placeholder="Haqqında" />
+    </div>
+    <br />
+    <br />
+    <div>
+        <button id="btnupdatwriter" class="btn btn-outline-danger">Yadda saxla</button>
+    </div>
+</div>
+
+
+
+    <script type="text/javascript">
+        //bütün yazıçı siyahısı
+        $('#btn').click(function () {
+            createtableall();
+        });
+
+        //id ye göre yazıçı
+        $('#btn2').click(function () {
+            let id = $('#writerid').val();
+            $.ajax({
+                contentType: 'application.json',
+                dataType: 'json',
+                type: 'Get',
+                url: '/Admin/Writer/GetWriterById/',
+                data: { writerid: id },
+                success: function (jsonwriter) {
+                    let writer = jQuery.parseJSON(jsonwriter);
+                    let tablehtml = `<h1>${writer.WriterName}</h1><table class="table table-bordered table-hover"><thead><tr><th>#</th><th>Şəkil</th><th>Mail</th><th>Ad</th><th>Id</th></tr></thead><tbody>`;
+                    tablehtml += `<tr><td>1</td><td style="width: 20%;"><img style="width: 30%;border-radius: 50%;display: inline-blok;"src="/Web/images/${writer.WriterImage}"/></td><td>${writer.WriterMail}</td><td>${writer.WriterName}</td><td>${writer.WriterId}</td></tr>`;
+                    tablehtml += '</tbody></table>';
+                    $('#writerplace').html(tablehtml);
+                }
+            });
+        });
+
+        //yazıçı əlavə show
+        $('#btnadd').click(function () {
+            $('#add').slideToggle();
+        })
+
+        //yazıçı əlavə etmək
+        $('#btnaddwriter').click(function(){
+            let writer = {
+                WriterName: $('#name').val(),
+                WriterMail: $('#mail').val(),
+                WriterPassword: $('#pass').val(),
+                WriterAbout: $('#about').val()
+            };
+            $.ajax({
+                type: 'post',
+                url: '/Admin/Writer/AddWriter/',
+                data: writer,
+                success: function (jsonWriters) {
+                    let result = jQuery.parseJSON(jsonWriters);
+                    swal("Uğurlu!", 'Yazıçı sistemə uğurla əlavə edildi', "success");
+                createtableall();
+                }
+            });
+        })
+
+        //bütün yazıçılar
+        function createtableall(){
+            $.ajax({
+                contentType: 'application.json',
+                dataType: 'json',
+                type: 'Get',
+                url: '/Admin/Writer/GetWriters',
+                success: function (jsonwriters) {
+                    let writers = jQuery.parseJSON(jsonwriters);
+                let tablehtml = '<h1>Yazıçılar</h1> <table class="table table-bordered table-hover"><thead><tr><th>#</th><th>Şəkil</th><th>Mail</th><th>Ad</th><th>Id</th></tr></thead><tbody>';
+                    $.each(writers, (index, value) => {
+                    tablehtml += `<tr><td>${index + 1}</td><td style="width: 20%;"><img style="width: 30%;border-radius: 50%;display: inline-blok;"src="/Web/images/${value.WriterImage}"/></td><td>${value.WriterMail}</td><td>${value.WriterName}</td><td>${value.WriterId}</td></tr>`;
+                    });
+                    tablehtml += '</tbody></table>';
+                    $('#writerplace').html(tablehtml);
+                }
+            });
+        }
+        //Silme
+            $('#btn3').click(function(){
+                $.ajax({
+                    type: 'delete',
+                    url: '/Admin/Writer/WriterDelete/',
+                    data: { writerid: $('#writerid').val()},
+                    success: function(){
+                swal("Uğurlu!", 'Yazıçı sistemdən uğurla silindi', "success");
+                createtableall();
+                    }
+                });
+            })
+
+
+
+
+        //yazıçı update show
+        $('#btnupd').click(function () {
+            $('#update').slideToggle();
+        createtableall();
+        })
+
+        $('#btnupdatwriter').click(function(){
+            let w = {
+                WriterId: $('#id').val(),
+                WriterName: $('#name1').val(),
+                WriterMail: $('#mail1').val(),
+                WriterPassword: $('#pass1').val(),
+                WriterAbout: $('#about1').val()
+            };
+
+            $.ajax({
+                type: 'update',
+                url: '/Admin/Writer/UpdateWriter/',
+                data: w,
+                success: function(){
+                    swal("Uğurlu!", 'Yazıçı uğurla güncəlləndi', "success");
+                    createtableall();
+                }
+
+            })
+
+        })
+
+
+
+    </script>

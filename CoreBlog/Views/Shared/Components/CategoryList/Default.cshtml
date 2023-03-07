@@ -1,0 +1,13 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Category>
+<div class="tech-btm">
+    <h4>Kateqoriyalar</h4>
+    <ul class="list-group single">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                <a style="color: #01cd74" href="/Blog/Index/@item.CategoryId">@item.CategoryName</a>
+            </li>
+        }
+    </ul>
+</div>

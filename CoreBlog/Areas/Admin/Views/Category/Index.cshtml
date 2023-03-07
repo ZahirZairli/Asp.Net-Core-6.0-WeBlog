@@ -1,0 +1,97 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<EntityLayer.Concrete.Category>
+@{
+    ViewData["Title"] = "Kateqoriyalar";
+    ViewData["Cotroller"] = "Kateqoriya";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayyout.cshtml";
+    var a = 1;
+}
+
+@if (TempData["deletecategory"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Silindi!", 'Seçmiş olduğunuz blog uğurla silindi', "success");
+        };
+    </script>
+}
+@if (TempData["addcategory"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Uğurlu!", 'Yeni kateqoriya uğurla əlavə edildi', "success");
+        };
+    </script>
+}
+<div class="row">
+    <h1>Kateqoriyalar</h1>
+    <br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Ad
+                </th>
+                <th>
+                    Təsvir
+                </th>
+                <th>
+                    Status
+                </th>
+                <th> <i class="fa fa-handshake-o"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @a
+                    </th>
+                    <td>
+                        @item.CategoryName
+                    </td>
+                    <td>
+                        @item.CategoryDescription
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryStatus)
+                        @if (item.CategoryStatus == true)
+                        {
+                            <a style="color: red;" href="~/Areas/Category/Edit/@item.CategoryId">Passiv et </a>
+                        }
+                        else
+                        {
+                            <a style="color: green;" href="~/Areas/Category/Edit/@item.CategoryId">Aktiv et </a>
+                        }
+                    </td>
+                    <td>
+                        <a href="~/Areas/Category/Edit/@item.CategoryId"> <i class="fa fa-edit"></i> </a> |
+                        <span id="deleteSpan_@item.CategoryId">
+                            <a onclick="confirmDelete('@item.CategoryId',true)"><i class="fa fa-trash-o"></i></a>
+                        </span>
+                        <span id="confirmDeleteSpan_@item.CategoryId" style="display: none;">
+                            <span>Əminsinizmi?</span>
+                            <a href="~/Admin/Category/DeleteCategory/@item.CategoryId"><i style="color: red;" class="fa fa-trash-o"></i></a> |
+                            <a onclick="confirmDelete('@item.CategoryId',false)"><i style="color: green;" class="fa fa-window-close"></i></a>
+                        </span>
+                    </td>
+                </tr>
+                a++;
+            }
+        </tbody>
+    </table>
+    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}))
+    </div>
+    <br />
+</div>
+    <p>
+    <a href="~/Admin/Category/AddCategory" class="btn btn-primary btn-outline">Yeni kateqoriya</a>
+    </p>
+<script src="~/js/site.js"></script>
+

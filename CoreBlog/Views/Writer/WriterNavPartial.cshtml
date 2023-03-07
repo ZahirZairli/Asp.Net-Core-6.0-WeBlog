@@ -1,0 +1,59 @@
+﻿<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        @await Component.InvokeAsync("WriterAbout")
+        <li class="nav-item">
+            <a class="nav-link" href="~/Dashboard/Index">
+                <span class="menu-title">Ana səhifə</span>
+                <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="~/Writer/Index">
+                <span class="menu-title">Profil</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="~/WriterPanelBlog/MyBlogs">
+                <span class="menu-title">Bloqlarım</span>
+                <i class="mdi mdi-play-protected-content menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="~/WriterPanelBlog/NewBlog">
+                <span class="menu-title">Yeni bloq</span>
+                <i class="mdi mdi-new-box menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="~/Message/AllInbox">
+                <span class="menu-title">Gələn mesajlar</span>
+                <i class="mdi mdi-message menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="~/Message/AllSendBox">
+                <span class="menu-title">Göndərilən mesajlar</span>
+                <i class="mdi mdi-message-draw menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="~/Notification/AllNotifications">
+                <span class="menu-title">Bildişlər</span>
+                <i class="mdi mdi-notification-clear-all menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="~/Blog/Index">
+                <span class="menu-title">Sayta get</span>
+                <i class="mdi mdi-division menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="~/Login/Logout">
+                <span class="menu-title">Sistemdən çıx</span>
+                <i class="mdi mdi-logout menu-icon"></i>
+            </a>
+        </li>
+    </ul>
+</nav>

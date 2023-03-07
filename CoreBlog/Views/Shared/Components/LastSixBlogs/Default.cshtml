@@ -1,0 +1,57 @@
+﻿@using EntityLayer.Concrete
+@model List<Blog>
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Son paylaşılan bloqlar</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> Şəkil </th>
+                                <th> Kteqoriya </th>
+                                <th> Tarix </th>
+                                <th> Baxış </th>
+                                <th> Bəyəni </th>
+                                <th> Bax </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/Web/images/@item.BlogImage" class="mr-2" alt="image"> @item.BlogTitle
+                                    </td>
+                                    <td>
+                                        @if (item.Category.CategoryName.Length <= 3)
+                                        {
+                                            <label class="badge badge-gradient-success">@item.Category.CategoryName</label>
+                                        }
+                                        else if (item.Category.CategoryName.Length <= 5 && item.Category.CategoryName.Length > 3)
+                                        {
+                                            <label class="badge badge-gradient-info">@item.Category.CategoryName</label>
+                                        }
+                                        else if (item.Category.CategoryName.Length <= 6 && item.Category.CategoryName.Length >5)
+                                        {
+                                            <label class="badge badge-gradient-primary">@item.Category.CategoryName</label>
+                                        }
+                                        else
+                                        {
+                                            <label class="badge badge-gradient-warning">@item.Category.CategoryName</label> 
+                                        }
+                                    </td>
+                                    <td> @(((DateTime)item.BlogDate).ToString("dd/MMM/yyyy")) </td>
+                                    <td> @item.BlogViewingCount </td>
+                                    <td> @item.BlogLikeCount</td>
+                                    <td> <a href="/Blog/BlogDetail/@item.BlogId"><i class="mdi mdi-eye"></i> </a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

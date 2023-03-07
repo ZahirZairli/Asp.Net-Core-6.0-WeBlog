@@ -1,0 +1,76 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Message>
+
+@{
+    ViewData["Title"] = "AllInbox";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    var a = 1;
+}
+
+@if (TempData["deletemessage"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Silindi!", 'Seçmiş olduğunuz mesaj uğurla silindi', "success");
+        };
+    </script>
+}
+<div style="width: 100%;text-align: center;overflow: scroll;">
+    <h1>Gələn mesajlar</h1>
+    <br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Göndərən
+                </th>
+                <th>
+                    Mövzu
+                </th>
+                <th>
+                    Tarix
+                </th>
+                <th> <i class="mdi mdi-settings menu-icon"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @a
+                    </th>
+                    <td>
+                        <img src="~/Web/images/@item.UserSenderUser.ImageUrl" />
+                        @Html.DisplayFor(modelItem => item.UserSenderUser.NameSurname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @(((DateTime)item.Date).ToString("dd/MMM/yyyy"))
+                    </td>
+                    <td>
+                        <a href="/Message/Detail/@item.MessageId"> <i class="mdi mdi-eye"></i> </a> |
+                        <span id="deleteSpan_@item.MessageId">
+                            <a onclick="confirmDelete('@item.MessageId',true)"><i class="mdi mdi-delete"></i></a>
+                        </span>
+                        <span id="confirmDeleteSpan_@item.MessageId" style="display: none;">
+                            <span>Əminsinizmi?</span>
+                            <a href="/Message/Delete/@item.MessageId"><i style="color: red;" class="mdi mdi-delete"></i></a> |
+                            <a onclick="confirmDelete('@item.MessageId',false)"><i style="color: green;" class="mdi mdi-window-close"></i></a>
+                        </span>
+                    </td>
+                </tr>
+                a++;
+            }
+        </tbody>
+    </table>
+    <br />
+    <p>
+        <a href="/Message/NewMessage" class="btn btn-outline-primary">Yeni Mesaj</a>
+    </p>
+</div>
+<script src="~/js/site.js"></script>

@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Excel-Bloq";
+    ViewData["Cotroller"] = "Bloq";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayyout.cshtml";
+}
+
+<h1>BlogListExcel</h1>
+<br />
+<button class="btn btn-primary btn-outline" onclick="DownLoad()">Exceli yüklə</button>
+<script>
+    function DownLoad(){
+        window.open("/Admin/Blog/ExportExcelBlogList");
+    }
+</script>

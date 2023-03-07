@@ -1,0 +1,94 @@
+﻿@model EntityLayer.Concrete.Message
+@{
+    ViewData["Title"] = "NewMessage";
+    ViewData["Cotroller"] = "Message";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayyout.cshtml";
+}
+@if (TempData["sendmessage"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Göndərildi!", 'Mesajınız uğurla göndərildi', "success");
+        };
+    </script>
+}
+@if (TempData["sendmessageerror"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Xəta!", 'Bu maildə istifadəçi sistemdə mövcud deyildir', "error");
+        };
+    </script>
+}
+@if (TempData["sendmessageerrormodel"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Xəta!", 'Tələb edilən xanaları düzgün şəkildə doldurun', "error");
+        };
+    </script>
+}
+<div class="row">
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-content mailbox-content">
+                <div class="file-manager">
+                    <a class="btn btn-block btn-outline-primary compose-mail" href="/Admin/Message/NewMessage">Yeni mesaj</a>
+                    <div class="space-25"></div>
+                    <h5>Xüsusiyyətlər</h5>
+                    <ul class="folder-list m-b-md" style="padding: 0">
+                        <li><a href="/Admin/Message/Inbox"> <i class="fa fa-inbox "></i> Gələn mesajlar <span class="label label-warning float-right">16</span> </a></li>
+                        <li><a href="/Admin/Message/Sendbox"> <i class="fa fa-envelope-o"></i> Göndərilən mesajlar</a></li>
+                        <li><a href="mailbox.html"> <i class="fa fa-file-text-o"></i> Qaralama <span class="label label-danger float-right">2</span></a></li>
+                        <li><a href="mailbox.html"> <i class="fa fa-trash-o"></i> Zibil qutusu</a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 animated fadeInRight">
+        <div class="mail-box-header">
+            <div class="float-right tooltip-demo">
+            </div>
+            <h2>
+                Yeni mesaj
+            </h2>
+        </div>
+        <div class="mail-box">
+            <div class="mail-body">
+                <form action="/Admin/Message/NewMessage" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Kimə:</label>
+                        <div class="col-sm-10">
+                            @if (ViewBag.receivermail != null)
+                            {
+                                <input name="ReceiverUserMail" value="@ViewBag.receivermail" required type="email" class="form-control" />
+                            }
+                            else
+                            {
+                                <input name="ReceiverUserMail" required type="email" class="form-control" />
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Mövzu:</label>
+                        <div class="col-sm-10"><input type="text" name="Subject" asp-for="Subject" class="form-control"></div>
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                    <div class="mail-text h-400">
+                        <textarea class="summernote" name="Content" rows="8" cols="50"></textarea>
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div>
+                        <input type="submit" value="Göndər" class="btn btn-outline-primary form-control" />
+                        <input type="reset" value="Ləğv et" class="btn btn-outline-danger form-control" />
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

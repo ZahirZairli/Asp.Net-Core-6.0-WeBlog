@@ -1,0 +1,76 @@
+﻿@model UserSignUpViewModel
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@if (TempData["errormessage"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Xəta!", 'Zəhmət olmasa səhvləri aradan qaldırıb yenidən cəhd edin.', "error");
+        };
+    </script>
+}
+@if (TempData["errormessagemail"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Xəta!", 'Qeyd etmiş olduğunuz mail sistemdə mövcuddur.Zəhmət olmasa fərqli mail istifadə edin', "error");
+        };
+    </script>
+}
+<h3 class="tittle">Qeydiyyatdan keç</h3>
+<div class="inner-sec">
+    <div class="login p-5 bg-light mx-auto mw-100">
+        <form action="/RegisterUser/SignUp" method="post">
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="validationCustom01">Ad,soyad</label>
+                    <input type="text" class="form-control" name="NameSurname" id="validationDefault01" placeholder="" required="">
+                    @Html.ValidationMessageFor(x => x.NameSurname, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="validationCustom02">Mail</label>
+                    <input type="email" class="form-control" name="Mail" id="validationDefault02" placeholder="" required="">
+                    @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="validationDefault03 mb-2">İstifadəçi adı</label>
+                    <input type="text" name="UserName" class="form-control" id="validationDefault03" placeholder="" required="">
+                    @Html.ValidationMessageFor(x => x.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="password1 mb-2">Şifrə</label>
+                    <input type="password" name="Password" class="form-control" id="password1" placeholder="" required="">
+                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="password2 mb-2">Şifrəni təsdiqlə</label>
+                    <input type="password" name="ConfirmPassword" class="form-control" id="password2" placeholder="" required="">
+                    @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary submit mb-4">Təsdiqlə</button>
+            <p>
+                <a id="btn1" href="#">Bütün qaydaları oxuyub,qəbul edirəm.</a>
+            </p>
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        </form>
+    </div>
+</div>
+<script>
+    $("#btn1").click(function () {
+        swal({
+            position: "top-right",
+            title: "Qaydalar >>",
+            text: "Qeyd etdiyiniz maile yeni bloglarımız haqqında məlumalar göndəriləcəkdir!",
+            icon: "info",
+        });
+    })
+</script>

@@ -1,0 +1,35 @@
+﻿@model EntityLayer.Concrete.Notification
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Ətraflı</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Bildiriş tipi
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NotificationType)
+        </dd>
+        <dt class = "col-sm-2">
+            Bildiriş
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NotificationDetail)
+        </dd>
+        <dt class = "col-sm-2">
+            Tarix
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NotificationDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a href="~/Notification/AllNotifications">Geri qayıt</a>
+</div>

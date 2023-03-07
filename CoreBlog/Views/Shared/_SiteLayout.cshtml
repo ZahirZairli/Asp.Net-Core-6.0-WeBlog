@@ -1,0 +1,217 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>@ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Weblog a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" type="image/x-icon" href="~/Web/images/banner1.jpg">
+    <link href="~/Web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Web/css/single.css">
+    <link href="~/Web/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/Web/css/fontawesome-all.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+          rel="stylesheet">
+    @*Swwete alert*@
+    <link media="screen" rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.3.8/sweetalert2.min.css" />
+    <link media="screen" rel="stylesheet" href='https://cdn.jsdelivr.net/sweetalert2/6.3.8/sweetalert2.css' />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/sweetalert2/6.3.8/sweetalert2.min.js"></script>
+    @*Swwete alert*@
+</head>
+
+<body>
+    <!--Header-->
+
+    <header>
+        <div class="top-bar_sub_w3layouts container-fluid">
+            <div class="row">
+                <div class="col-md-4 logo text-left">
+                    <a class="navbar-brand" href="/Blog/Index">
+                        <i class="fab fa-linode"></i> Weblog
+                    </a>
+                </div>
+                @await Html.PartialAsync("TopNavPartial")
+                <div class="col-md-4 log-icons text-right">
+
+                    <ul class="social_list1 mt-3">
+
+                        <li>
+                            <a href="https://www.facebook.com/profile.php?id=100006595188135" class="facebook1 mx-2">
+                                <i class="fab fa-facebook-f"></i>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/profile.php?id=100006595188135" class="twitter2">
+                                <i class="fab fa-twitter"></i>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/profile.php?id=100006595188135" class="dribble3 mx-2">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/profile.php?id=100006595188135" class="pin">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @await Html.PartialAsync("NavPartial")
+    </header>
+    <!--//header-->
+    <!--/banner-->
+    <div class="banner-inner">
+    </div>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/Blog/Index">Ana səhifə</a>
+        </li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
+    <!--//banner-->
+    <!--/main-->
+    <section class="main-content-w3layouts-agileits">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
+    <!--//main-->
+    <!--footer-->
+
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
+                    <h3>Haqqımızda</h3>
+                    <p>Əvvəla bunların hardan ortaya çıxdığı haqqında bir neçə cümlə yazmaq istəyirəm. Texnologiya dünyasında artıq  ..</p>
+                    <div class="read">
+                        <a href="/About/AboutUs" class="btn btn-primary read-m">Daha çox</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
+
+                    <div class="tech-btm">
+                        @await Component.InvokeAsync("LastBlogs")
+                    </div>
+                </div>
+
+                <!-- subscribe -->
+                <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
+
+
+                    <div class="tech-btm">
+                        <h4>Abonə olun</h4>
+                        <p>Texnologiya, proqramlaşdırma və digər bloqlar...</p>
+                        <form id="subscribeform2" action="/NewsLetter/PartialSubscribeMail/">
+                            <input id="email2" type="email" placeholder="Email" required="" name="Mail" />
+                            <input type="submit" value="Təsdiq et">
+                        </form>
+                    </div>
+
+
+
+                    @*@await Html.PartialAsync("~/Views/NewsLetter/PartialSubscribeMail.cshtml")*@
+                </div>
+                <!-- //subscribe -->
+            </div>
+            <!-- footer -->
+            @await Html.PartialAsync("FooterPartial")
+            <!-- //footer -->
+        </div>
+    </footer>
+
+
+
+
+    <script>
+        // this is the id of the form
+        $("#subscribeform2").submit(function (e) {
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            e.stopImmediatePropagation();
+            var form = $(this);
+            var url = form.attr('action');
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(), // serializes the form's elements.
+                success: function () {
+                    swal("Təbrikler!", document.getElementById("email2").value + " maili ilə bülletenə abonə oldunuz!", "success"); // show response from the php script.
+                    document.getElementById("email2").value = "";
+                }
+            });
+        });
+    </script>
+
+    <!---->
+    <!-- js -->
+    <script src="~/Web/js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!--/ start-smoth-scrolling -->
+    <script src="~/Web/js/move-top.js"></script>
+    <script src="~/Web/js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 900);
+            });
+        });
+    </script>
+    <!--// end-smoth-scrolling -->
+
+    <script>
+        $(document).ready(function () {
+            /*
+                                    var defaults = {
+                                            containerID: 'toTop', // fading element id
+                                        containerHoverID: 'toTopHover', // fading element hover id
+                                        scrollSpeed: 1200,
+                                        easingType: 'linear'
+                                        };
+                                    */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <a href="#home" class="scroll" id="toTop" style="display: block;">
+        <span id="toTopHover" style="opacity: 1;"> </span>
+    </a>
+
+    <!-- //Custom-JavaScript-File-Links -->
+    <script src="~/Web/js/bootstrap.js"></script>
+
+
+</body>
+
+</html>

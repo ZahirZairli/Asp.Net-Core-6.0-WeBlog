@@ -1,0 +1,26 @@
+﻿@using PresentationLayer.Areas.Admin.Models
+@model UserRoleModel
+@{
+    ViewData["Title"] = "NewRole";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayyout.cshtml";
+    ViewData["Cotroller"] = "AdminRole";
+}
+<h4>Yeni vəzifə</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div class="form-group">
+                <label>Vəzifə adı</label>
+                <input type="text" class="form-control" name="rolename" />
+            </div>
+            <span asp-validation-for="rolename" class="text-danger"></span> 
+            <div asp-validation-summary="ModelOnly">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">Əlavə et</button>
+            </div>
+        </form>
+    </div>
+<a href="javascript:history.back()">Geri qayıt</a>
+</div>

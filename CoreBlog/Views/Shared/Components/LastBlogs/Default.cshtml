@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Blog>
+<div class="tech-btm">
+    <h4>Ən son paylaşılan bloqlar</h4>
+
+    @foreach (var item in Model)
+    {
+        <div class="blog-grids row mb-3">
+            <div class="col-md-5 blog-grid-left">
+                <a href="/Blog/BlogDetail/@item.BlogId">
+                    <img src="~/Web/images/@item.BlogThumbnailImage" class="img-fluid" alt="">
+                </a>
+            </div>
+            <div class="col-md-7 blog-grid-right">
+
+                <h5>
+                    <a href="/Blog/BlogDetail/@item.BlogId">@item.BlogTitle</a>
+                </h5>
+                <div class="sub-meta">
+                    <span>
+                        @if (item.BlogContent.Length > 20)
+                        {
+                            var a = item.BlogContent.Length;
+                            @item.BlogContent.Substring(0,item.BlogContent.Substring(0,20).LastIndexOf(" "))
+                        }
+                        else
+                        {
+                            @item.BlogContent
+                        }
+                        ....
+
+                    </span>
+                </div>
+                <div class="sub-meta">
+                    <span>
+                        <i class="far fa-clock"></i> @(((DateTime)item.BlogDate).ToString("dd/MMM/yyyy"))
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+</div>

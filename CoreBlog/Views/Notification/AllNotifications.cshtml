@@ -1,0 +1,30 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Notification>
+
+@{
+    ViewData["Title"] = "AllNotifications";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    var a = 1;
+}
+
+<h1>Bütün bildirişlər</h1>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Bildiriş</th>
+            <th>Tarix</th>
+            <th>Ətraflı</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <th>@a</th>
+            <td>@item.NotificationDetail</td>
+            <td>@(((DateTime)item.NotificationDate).ToString("dd/MMM/yyyy"))</td>
+            <td><a href="~/Notification/Detail/@item.NotificationId"><i class="mdi mdi-read"></i></a></td>
+        </tr>
+        a++;
+}
+    </tbody>
+</table>

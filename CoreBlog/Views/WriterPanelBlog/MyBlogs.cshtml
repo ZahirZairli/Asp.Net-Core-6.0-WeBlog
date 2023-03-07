@@ -1,0 +1,81 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Blog>
+
+@{
+    ViewData["Title"] = "MyBlogs";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    var a = 1;
+}
+@if (TempData["deletemessage"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Silindi!", 'Seçmiş olduğunuz blog uğurla silindi', "success");
+        };
+    </script>
+}
+
+<div style="width: 100%;text-align: center;overflow: scroll;">
+    <h1>Bloqlarım</h1>
+    <br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Başlıq
+                </th>
+                <th>
+                    Şəkil
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Kateqoriya
+                </th>
+                <th> <i class="mdi mdi-settings menu-icon"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @a
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BlogTitle)
+                    </td>
+                    <td>
+                        <img src="~/Web/images/@item.BlogImage" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BlogStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                    </td>
+                    <td>
+                        <a href="/WriterPanelBlog/Edit/@item.BlogId"> <i class="mdi mdi-table-edit"></i> </a> |
+                        <span id="deleteSpan_@item.BlogId">
+                            <a onclick="confirmDelete('@item.BlogId',true)"><i class="mdi mdi-delete"></i></a>
+                        </span>
+                        <span id="confirmDeleteSpan_@item.BlogId" style="display: none;">
+                            <span>Əminsinizmi?</span>
+                            <a href="/WriterPanelBlog/Delete/@item.BlogId"><i style="color: red;" class="mdi mdi-delete"></i></a> |
+                            <a onclick="confirmDelete('@item.BlogId',false)"><i style="color: green;" class="mdi mdi-window-close"></i></a>
+                        </span>
+                    </td>
+                </tr>
+                a++;
+            }
+        </tbody>
+    </table>
+    <br />
+    <p>
+        <a href="/WriterPanelBlog/NewBlog" class="btn btn-primary">Yeni bloq</a>
+    </p>
+</div>
+<script src="~/js/site.js"></script>

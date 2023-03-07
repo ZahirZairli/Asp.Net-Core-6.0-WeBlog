@@ -1,0 +1,60 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Comment>
+<div class="comment-top">
+    <h4>Yorumlar</h4>
+
+    @if (Model.Count() == 0)
+    {
+        <div class="media">
+            <div class="media-body">
+                <p style="color: #01cd74">
+                    Bu bloqa aid yorum yoxdur.İlk yorum yazan siz olun!
+                </p>
+            </div>
+        </div>
+        <hr />
+    }
+
+
+    @foreach (var item in Model)
+    {
+        <div class="media">
+            <img style="border-radius: 50%;width: 10%;" src="~/Web/images/com.png" alt="" class="img-fluid" />
+            <div class="media-body">
+                <h5 class="mt-0">@item.CommentUserName</h5>
+                <p>
+                    @item.CommentContent
+                </p>
+                <span style="float: right;color: #01cd74;">
+                @{
+                    DateTime end = (DateTime)item.CommentDate;
+                    DateTime now = DateTime.Now;
+                    TimeSpan diff = end.Subtract(now);
+                }
+                    @if (diff.Days != 0 && diff.Hours != 0 && diff.Minutes != 0)
+                    {
+                        <span>  @int.Parse(diff.ToString(@"dd"))  gün əvvəl </span>
+                    }
+                    else if (diff.Days == 0 && diff.Hours != 0 && diff.Minutes != 0)
+                    {
+                        <span>
+                            @int.Parse(diff.ToString(@"hh")) saat əvvəl
+                        </span>
+                    }
+                    else if (diff.Days == 0 && diff.Hours == 0 && diff.Minutes != 0)
+                    {
+                        <span>
+                            @int.Parse(diff.ToString(@"mm")) dəqiqə əvvəl
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            @int.Parse(diff.ToString(@"ss")) saniyə əvvəl
+                        </span>
+                    }
+                </span>
+            </div>
+        </div>
+        <hr />
+    }
+</div>

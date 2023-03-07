@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\jwt_core_blog_proje.props" />
+</Project>

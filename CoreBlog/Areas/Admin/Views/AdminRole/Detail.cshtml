@@ -1,0 +1,34 @@
+﻿@using PresentationLayer.Areas.Admin.Models
+@model UserRoleModelUpdate
+@{
+    ViewData["Title"] = "Detail";
+    ViewData["Cotroller"] = "AdminRole";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayyout.cshtml";
+}
+@if (TempData["rolemessage2"] != null)
+{
+        <script type="text/javascript">
+            window.onload = function () {
+                swal("Silindi!", 'Seçmiş olduğunuz vəzifə uğurla silindi', "success");
+            };
+        </script>
+}
+<h1>Vəzifəyə düzəliş et</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Detail" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="RoleId" class="form-control" value="@Model.RoleId"/>
+            <div class="form-group">
+                <label class="control-label">Vəzifə adı</label>
+                <input name="RoleName" class="form-control" value="@Model.RoleName" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Yadda saxla" class="btn btn-outline btn-primary" />
+    <a href="javascript:history.back()" class="btn btn-outline btn-warning">Siyahıya qayıt</a>
+            </div>
+        </form>
+    </div>
+</div>

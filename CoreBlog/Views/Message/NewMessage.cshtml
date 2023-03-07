@@ -1,0 +1,59 @@
+﻿@model EntityLayer.Concrete.Message
+@{
+    ViewData["Title"] = "NewMessage";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+@if (TempData["sendmessage"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Göndərildi!", 'Mesajınız uğurla göndərildi', "success");
+        };
+    </script>
+}
+@if (TempData["sendmessageerror"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Xəta!", 'Bu maildə istifadəçi sistemdə mövcud deyildir', "error");
+        };
+    </script>
+}
+<h1>Yeni mesaj</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="NewMessage" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Kimə</label>
+                @if (ViewBag.receivermail != null)
+                {
+                    <input name="ReceiverUserMail" value="@ViewBag.receivermail" required type="email" class="form-control" />
+                }
+                else
+                {
+                    <input name="ReceiverUserMail" required type="email" class="form-control" />
+                }
+            </div>
+            <div class="form-group">
+                <label class="control-label">Mövzu</label>
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Mesaj</label>
+                <input asp-for="Content" class="form-control" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <br />
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Göndər" class="btn btn-outline-primary" />
+                <a style="float: right;" class="btn btn-info" href="javascript:history.back()" >Geri qayıt</a>
+            </div>
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        </form>
+    </div>
+</div>
+

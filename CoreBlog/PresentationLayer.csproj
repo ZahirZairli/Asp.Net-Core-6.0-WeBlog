@@ -1,0 +1,114 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Web\about.html" />
+    <None Include="wwwroot\Web\blog1.html" />
+    <None Include="wwwroot\Web\blog2.html" />
+    <None Include="wwwroot\Web\blog3.html" />
+    <None Include="wwwroot\Web\contact.html" />
+    <None Include="wwwroot\Web\css\bootstrap.css" />
+    <None Include="wwwroot\Web\css\contact.css" />
+    <None Include="wwwroot\Web\css\fontawesome-all.css" />
+    <None Include="wwwroot\Web\css\jquery.desoslide.css" />
+    <None Include="wwwroot\Web\css\single.css" />
+    <None Include="wwwroot\Web\css\style.css" />
+    <None Include="wwwroot\Web\images\1.jpg" />
+    <None Include="wwwroot\Web\images\2.jpg" />
+    <None Include="wwwroot\Web\images\3.jpg" />
+    <None Include="wwwroot\Web\images\4.jpg" />
+    <None Include="wwwroot\Web\images\5.jpg" />
+    <None Include="wwwroot\Web\images\6.jpg" />
+    <None Include="wwwroot\Web\images\7.jpg" />
+    <None Include="wwwroot\Web\images\8.jpg" />
+    <None Include="wwwroot\Web\images\b1.jpg" />
+    <None Include="wwwroot\Web\images\b2.jpg" />
+    <None Include="wwwroot\Web\images\b3.jpg" />
+    <None Include="wwwroot\Web\images\b4.jpg" />
+    <None Include="wwwroot\Web\images\b5.jpg" />
+    <None Include="wwwroot\Web\images\banner1.jpg" />
+    <None Include="wwwroot\Web\images\banner2.jpg" />
+    <None Include="wwwroot\Web\images\banner3.jpg" />
+    <None Include="wwwroot\Web\images\banner4.jpg" />
+    <None Include="wwwroot\Web\images\banner5.jpg" />
+    <None Include="wwwroot\Web\images\left.png" />
+    <None Include="wwwroot\Web\images\m1.jpg" />
+    <None Include="wwwroot\Web\images\m2.jpg" />
+    <None Include="wwwroot\Web\images\m3.jpg" />
+    <None Include="wwwroot\Web\images\m4.jpg" />
+    <None Include="wwwroot\Web\images\right.png" />
+    <None Include="wwwroot\Web\images\t1.jpg" />
+    <None Include="wwwroot\Web\images\t2.jpg" />
+    <None Include="wwwroot\Web\images\t3.jpg" />
+    <None Include="wwwroot\Web\images\t4.jpg" />
+    <None Include="wwwroot\Web\images\Thumbs.db" />
+    <None Include="wwwroot\Web\images\top_up.png" />
+    <None Include="wwwroot\Web\index.html" />
+    <None Include="wwwroot\Web\js\bootstrap.js" />
+    <None Include="wwwroot\Web\js\easing.js" />
+    <None Include="wwwroot\Web\js\jquery-2.2.3.min.js" />
+    <None Include="wwwroot\Web\js\jquery.desoslide.js" />
+    <None Include="wwwroot\Web\js\jquery.flexisel.js" />
+    <None Include="wwwroot\Web\js\modernizr.custom.min.js" />
+    <None Include="wwwroot\Web\js\move-top.js" />
+    <None Include="wwwroot\Web\login.html" />
+    <None Include="wwwroot\Web\register.html" />
+    <None Include="wwwroot\Web\single.html" />
+    <None Include="wwwroot\Web\w3layouts-license.txt" />
+    <None Include="wwwroot\Web\webfonts\fa-brands-400.eot" />
+    <None Include="wwwroot\Web\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\Web\webfonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\Web\webfonts\fa-brands-400.woff" />
+    <None Include="wwwroot\Web\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\Web\webfonts\fa-regular-400.eot" />
+    <None Include="wwwroot\Web\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\Web\webfonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\Web\webfonts\fa-regular-400.woff" />
+    <None Include="wwwroot\Web\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\Web\webfonts\fa-solid-900.eot" />
+    <None Include="wwwroot\Web\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\Web\webfonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\Web\webfonts\fa-solid-900.woff" />
+    <None Include="wwwroot\Web\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.100.3" />
+    <PackageReference Include="FluentValidation" Version="11.4.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
+    <PackageReference Include="X.PagedList" Version="8.4.6" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
+    <ProjectReference Include="..\CoreBlogApi\CoreBlogApi.csproj" />
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
+    <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\Comment\" />
+  </ItemGroup>
+
+</Project>

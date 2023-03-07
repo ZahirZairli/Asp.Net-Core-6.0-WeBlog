@@ -1,0 +1,41 @@
+﻿@using EntityLayer.Concrete
+@model List<Blog>
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Ən çox baxılan 4 bloqunuz</h4>
+                <div class="d-flex">
+                    <div class="d-flex align-items-center mr-4 text-muted font-weight-light">
+                        <i class="mdi mdi-account-outline icon-sm mr-2"></i>
+                        <span>@ViewBag.writername</span>
+                    </div>
+                    <div class="d-flex align-items-center text-muted font-weight-light">
+                        <i class="mdi mdi-message icon-sm mr-2"></i>
+                        <span>@ViewBag.writermail</span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                        @foreach (var item in Model)
+                        {
+                    <div class="col-sm-6 pr-1">
+                            <a href="/Blog/BlogDetail/@item.BlogId">
+                            <img style="height: 230px;" src="~/Web/images/@item.BlogThumbnailImage" class="mb-2 mw-100 w-100 rounded" alt="image">
+                            </a>
+                    </div>
+                        }
+                </div>
+                <div class="d-flex mt-5 align-items-top">
+                    <img src="~/Web/images/@ViewBag.writerimage" class="img-sm rounded-circle mr-3" alt="image">
+                    <div class="mb-0 flex-grow">
+                        <h5 class="mr-2 mb-2">@ViewBag.writername</h5>
+                        <p class="mb-0 font-weight-light">@ViewBag.writerabout</p>
+                    </div>
+                    <div class="ml-auto">
+                        <i class="mdi mdi-heart-outline text-muted"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

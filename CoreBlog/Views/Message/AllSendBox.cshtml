@@ -1,0 +1,63 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Message>
+
+@{
+    ViewData["Title"] = "AllSendBox";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    var a = 1;
+}
+@if (TempData["deletemessage"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Silindi!", 'Seçmiş olduğunuz mesaj uğurla silindi', "success");
+        };
+    </script>
+}
+<div style="width: 100%;text-align: center;overflow: scroll;">
+    <h1>Göndərilən mesajlar</h1>
+    <br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Alıcı
+                </th>
+                <th>
+                    Mövzu
+                </th>
+                <th>
+                    Tarix
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @a
+                    </th>
+                    <td>
+                        <img src="~/Web/images/@item.UserReceiverUser.ImageUrl" />
+                        @Html.DisplayFor(modelItem => item.UserReceiverUser.NameSurname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @(((DateTime)item.Date).ToString("dd/MMM/yyyy"))
+                    </td>
+                </tr>
+                a++;
+            }
+        </tbody>
+    </table>
+    <br />
+    <p>
+        <a href="/Message/NewMessage" class="btn btn-outline-primary">Yeni Mesaj</a>
+    </p>
+</div>
+

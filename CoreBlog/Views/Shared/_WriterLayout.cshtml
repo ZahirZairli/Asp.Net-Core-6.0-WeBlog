@@ -1,0 +1,117 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/Writer/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Writer/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/Writer/assets/css/style.css">
+    <link rel="shortcut icon" href="~/Writer/assets/images/favicon.ico" />
+    @*Swwete alert*@
+    <link media="screen" rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.3.8/sweetalert2.min.css" />
+    <link media="screen" rel="stylesheet" href='https://cdn.jsdelivr.net/sweetalert2/6.3.8/sweetalert2.css' />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/sweetalert2/6.3.8/sweetalert2.min.js"></script>
+    @*Swwete alert*@
+</head>
+<body>
+    <div class="container-scroller">
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a href="https://zahirzairli.com"><img style="width: 100%;height: 10vh;border-radius: 50%;" src="~/Web/images/loqo.png" alt="logo" /></a>
+@*                <a class="navbar-brand brand-logo-mini" href="~/Writer/Index"><img src="~/Web/images/loqo.png" alt="logo" /></a>*@
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                <div class="search-field d-none d-md-block">
+@*                    <form class="d-flex align-items-center h-100" action="#">
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-transparent">
+                                <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                            </div>
+                            <input type="text" class="form-control bg-transparent border-0" placeholder="Axtar...">
+                        </div>
+                    </form>*@
+                </div>
+                <ul class="navbar-nav navbar-nav-right">
+@*                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <div class="nav-profile-img">
+                                <img src="~/Writer/assets/images/faces/face1.jpg" alt="image">
+                                <span class="availability-status online"></span>
+                            </div>
+                            <div class="nav-profile-text">
+                                <p class="mb-1 text-black">Zahir Zairli</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="~/Writer/Index">
+                                <i class="mdi mdi-cached mr-2 text-success"></i> Profil
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                                <i class="mdi mdi-logout mr-2 text-primary"></i> Sistemdən çıx
+                            </a>
+                        </div>
+                    </li>*@
+                    <li class="nav-item d-none d-lg-block full-screen-link">
+                        <a class="nav-link">
+                            <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+                        </a>
+                    </li>
+                    @await Component.InvokeAsync("WriterMessageNotification")
+                    @await Component.InvokeAsync("NotificationList")
+                    
+                    <li class="nav-item nav-logout d-none d-lg-block">
+                        <a class="nav-link" href="~/Login/Logout">
+                            <i class="mdi mdi-power"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-settings d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-format-line-spacing"></i>
+                        </a>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <div class="container-fluid page-body-wrapper">
+            @await Html.PartialAsync("~/Views/Writer/WriterNavPartial.cshtml")
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h3></h3>
+                        <nav style="float: right;" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="~/Dashboard/Index">Ana səhifə</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    @RenderBody()
+                </div>
+                @await Html.PartialAsync("~/Views/Writer/WriterFooterPartial.cshtml")
+            </div>
+        </div>
+    </div>
+    <script src="~/Writer/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/Writer/assets/js/off-canvas.js"></script>
+    <script src="~/Writer/assets/js/hoverable-collapse.js"></script>
+    <script src="~/Writer/assets/js/misc.js"></script>
+
+    <script src="~/Writer/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/Writer/assets/js/dashboard.js"></script>
+    <script src="~/Writer/assets/js/todolist.js"></script>
+</body>
+</html>

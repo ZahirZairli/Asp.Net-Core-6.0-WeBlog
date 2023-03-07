@@ -1,0 +1,54 @@
+﻿@model EntityLayer.Concrete.Blog
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Bloqa düzəliş et</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BlogId" />
+            <div class="form-group">
+                <label class="control-label">Başlıq</label>
+                <input asp-for="BlogTitle" class="form-control" />
+                <span asp-validation-for="BlogTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Mətn</label>
+                <textarea asp-for="BlogContent" type="text" class="form-control" rows="5" autofocus></textarea>
+                <span asp-validation-for="BlogContent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Thumbnail</label>
+                <input type="file" asp-for="BlogThumbnailImage" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Şəkil</label>
+                <input type="file" asp-for="BlogImage" class="form-control" />
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BlogStatus" /> Status
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Kateqoriya</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.dpr"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Yadda saxla" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="MyBlogs">Siyahıya qayıt</a>
+</div>
+

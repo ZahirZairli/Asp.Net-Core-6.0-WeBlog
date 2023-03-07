@@ -1,0 +1,93 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Message>
+@{
+    ViewData["Cotroller"] = "Message";
+    ViewData["Title"] = "Sendbox";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayyout.cshtml";
+    var a = 1;
+}
+<div class="row">
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-content mailbox-content">
+                <div class="file-manager">
+                    <a class="btn btn-block btn-outline-primary compose-mail" href="/Admin/Message/NewMessage">Yeni mesaj</a>
+                    <div class="space-25"></div>
+                    <h5>Xüsusiyyətlər</h5>
+                    <ul class="folder-list m-b-md" style="padding: 0">
+                        <li><a href="/Admin/Message/Inbox"> <i class="fa fa-inbox "></i> Gələn mesajlar <span class="label label-warning float-right">16</span> </a></li>
+                        <li><a href="/Admin/Message/Sendbox"> <i class="fa fa-envelope-o"></i> Göndərilən mesajlar</a></li>
+                        <li><a href="mailbox.html"> <i class="fa fa-file-text-o"></i> Qaralama <span class="label label-danger float-right">2</span></a></li>
+                        <li><a href="mailbox.html"> <i class="fa fa-trash-o"></i> Zibil qutusu</a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 animated fadeInRight">
+        <div class="mail-box-header">
+
+            <form method="get" action="index.html" class="float-right mail-search">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" name="search" placeholder="Axtar">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            Axtar
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <h2>
+                Göndərilən (@Model.Count())
+            </h2>
+            <div class="mail-tools tooltip-demo m-t-md">
+                <a href="#" onclick="window.location.reload(true);" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Yenidən yüklə"><i class="fa fa-refresh"></i> Yenidən yüklə</a>
+            </div>
+        </div>
+        <div class="mail-box">
+
+            <table class="table table-hover table-mail">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Alıcı</th>
+                        <th>Mövzu</th>
+                        <th>Tarix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="read">
+                            <td>@a</td>
+                            <td class="mail-ontact"><a href="mail_detail.html">@item.UserReceiverUser.NameSurname</a></td>
+                            <td class="mail-subject"><a href="mail_detail.html">@item.Subject</a></td>
+                            @{
+                                DateTime end = (DateTime)item.Date;
+                                DateTime now = DateTime.Now;
+                                TimeSpan diff = end.Subtract(now);
+                            }
+                            @if (diff.Days != 0 && diff.Hours != 0 && diff.Minutes != 0)
+                            {
+                                <td>@int.Parse(diff.ToString(@"dd"))  gün əvvəl</td>
+                            }
+                            else if (diff.Days == 0 && diff.Hours != 0 && diff.Minutes != 0)
+                            {
+                                <td>@int.Parse(diff.ToString(@"hh")) saat əvvəl</td>
+                            }
+                            else if (diff.Days == 0 && diff.Hours == 0 && diff.Minutes != 0)
+                            {
+                                <td>@int.Parse(diff.ToString(@"mm")) dəqiqə əvvəl</td>
+                            }
+                            else
+                            {
+                                <td>@int.Parse(diff.ToString(@"ss")) saniyə əvvəl</td>
+                            }
+                        </tr>
+                        a++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

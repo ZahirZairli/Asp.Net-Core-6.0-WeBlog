@@ -1,0 +1,24 @@
+﻿    <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+    <span class="mx-lg-4 mx-md-2  mx-1">
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a href="/Dashboard/Index">
+               <small>
+                   <i class="fas fa-lock"></i> Daxil ol- @User.Identity.Name
+               </small> 
+            </a>
+        }
+        else
+        {
+        <a href="/Login/SignIn">
+            <i class="fas fa-lock"></i> Daxil ol
+        </a>
+        }
+    </span>
+    <span>
+        <a href="/RegisterUser/SignUp">
+            <i class="far fa-user"></i> Qeydiyyat
+        </a>
+    </span>
+</div>

@@ -1,0 +1,55 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<EntityLayer.Concrete.AppUser>
+@{
+    ViewData["Title"] = "UserRoleList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayyout.cshtml";
+    var a = 1;
+    ViewData["Cotroller"] = "AdminRole";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>İstifadəçilər</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad</th>
+                            <th>Parametrlər</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@a</th>
+                                <td>@item.NameSurname</td>
+                                <td><a href="/Admin/AdminRole/AssignRole/@item.Id" class="btn btn-outline btn-primary">Vəzifə ver</a></td>
+                            </tr>
+                            a++;
+                        }
+                    </tbody>
+                </table>
+                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                    @Html.PagedListPager((IPagedList)Model,page=>Url.Action("UserRoleList",new {page}))
+                </div>
+                <a class="btn btn-outline btn-primary" href="/Admin/AdminRole/Index">Vəzifələrə bax</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
